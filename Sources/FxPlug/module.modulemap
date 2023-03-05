@@ -1,0 +1,13 @@
+framework module PluginManager {
+	header "/Library/Developer/SDKs/FxPlug.sdk/Library/Frameworks/PluginManager.framework/Versions/B/Headers/PROAPIAccessing.h"
+	header "/Library/Developer/SDKs/FxPlug.sdk/Library/Frameworks/PluginManager.framework/Versions/B/Headers/PROPlugInBundleRegistration.h"
+	header "/Library/Developer/SDKs/FxPlug.sdk/Library/Frameworks/PluginManager.framework/Versions/B/Headers/PROPlugProtocols.h"
+
+	export *
+}
+
+framework module FxPlug {
+	umbrella header "/Library/Developer/SDKs/FxPlug.sdk/Library/Frameworks/FxPlug.framework/Versions/A/Headers/FxPlugSDK.h"
+	export *
+	module * { export * }
+}
