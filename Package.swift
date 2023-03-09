@@ -5,6 +5,9 @@ import PackageDescription
 
 let package = Package(
     name: "FxPlugSPM",
+	platforms: [
+		.macOS(.v12),
+	],
 	products: [
 //		.library(name: "FxPlug", targets: ["FxPlug"]),
 //		.library(name: "PluginManager", targets: ["PluginManager"]),
