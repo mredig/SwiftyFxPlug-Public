@@ -1,20 +1,20 @@
 import FxPlug
 
-struct ParameterRetrievalApi<ParameterID: UInt32Raw> {
+public struct ParameterRetrievalApi<ParameterID: UInt32Raw> {
 	private let api: FxParameterRetrievalAPI_v7
 
-	init(api: FxParameterRetrievalAPI_v7) {
+	public init(api: FxParameterRetrievalAPI_v7) {
 		self.api = api
 	}
 
-	func boolValue(fromParameter parameter: ParameterID, at time: CMTime) throws -> Bool {
+	public func boolValue(fromParameter parameter: ParameterID, at time: CMTime) throws -> Bool {
 		var value = ObjCBool(false)
 		let success = api.getBoolValue(&value, fromParameter: parameter.rawValue, at: time)
 		guard success else { throw ParameterRetrievalError.unsuccessfulRetrievalAttempt }
 		return value.boolValue
 	}
 
-	func customValue<T: NSCopying & NSSecureCoding & NSObjectProtocol>(
+	public func customValue<T: NSCopying & NSSecureCoding & NSObjectProtocol>(
 		fromParameter parameter: ParameterID,
 		at time: CMTime) throws -> T {
 			var temp: (any NSCopying & NSSecureCoding & NSObjectProtocol)! = nil
@@ -26,21 +26,21 @@ struct ParameterRetrievalApi<ParameterID: UInt32Raw> {
 			return try (temp as? T).unwrap()
 		}
 
-	func floatValue(fromParameter parameter: ParameterID, at time: CMTime) throws -> Double {
+	public func floatValue(fromParameter parameter: ParameterID, at time: CMTime) throws -> Double {
 		var value: Double = 0
 		let success = api.getFloatValue(&value, fromParameter: parameter.rawValue, at: time)
 		guard success else { throw ParameterRetrievalError.unsuccessfulRetrievalAttempt }
 		return value
 	}
 
-	func fontName(fromParameter parameter: ParameterID, at time: CMTime) throws -> String {
+	public func fontName(fromParameter parameter: ParameterID, at time: CMTime) throws -> String {
 		var value: NSString = ""
 		let success = api.getFontName(&value, fromParameter: parameter.rawValue, at: time)
 		guard success else { throw ParameterRetrievalError.unsuccessfulRetrievalAttempt }
 		return value as String
 	}
 
-	func gradientSamples(
+	public func gradientSamples(
 		fromParameter parameter: ParameterID,
 		numberOfSamples sampleCount: UInt,
 		depth: ComponentDepth,
@@ -59,7 +59,7 @@ struct ParameterRetrievalApi<ParameterID: UInt32Raw> {
 			return data
 		}
 
-	func historgramInfo(fromParameter parameter: ParameterID, forChannel channel: HistogramChannel, at time: CMTime) throws -> HistorgramInfo {
+	public func historgramInfo(fromParameter parameter: ParameterID, forChannel channel: HistogramChannel, at time: CMTime) throws -> HistorgramInfo {
 		var (blackIn, blackOut, whiteIn, whiteOut, gamma) = (0.0, 0.0, 0.0, 0.0, 0.0)
 		let success = api.getHistogramBlack(
 			in: &blackIn,
@@ -79,28 +79,28 @@ struct ParameterRetrievalApi<ParameterID: UInt32Raw> {
 			gamma: gamma)
 	}
 
-	func intValue(fromParameter parameter: ParameterID, at time: CMTime) throws -> Int32 {
+	public func intValue(fromParameter parameter: ParameterID, at time: CMTime) throws -> Int32 {
 		var value: Int32 = 0
 		let success = api.getIntValue(&value, fromParameter: parameter.rawValue, at: time)
 		guard success else { throw ParameterRetrievalError.unsuccessfulRetrievalAttempt }
 		return value
 	}
 
-	func parameterFlags(fromParameter parameter: ParameterID) throws -> ParameterFlag {
+	public func parameterFlags(fromParameter parameter: ParameterID) throws -> ParameterFlag {
 		var value: UInt32 = 0
 		let success = api.getParameterFlags(&value, fromParameter: parameter.rawValue)
 		guard success else { throw ParameterRetrievalError.unsuccessfulRetrievalAttempt }
 		return ParameterFlag(rawValue: value)
 	}
 
-	func pathID(fromParameter parameter: ParameterID, at time: CMTime) throws -> FxPathID {
+	public func pathID(fromParameter parameter: ParameterID, at time: CMTime) throws -> FxPathID {
 		var pathID: UnsafeMutablePointer<FxPathID>?
 		let success = api.getPathID(pathID, fromParameter: parameter.rawValue, at: time)
 		guard success else { throw ParameterRetrievalError.unsuccessfulRetrievalAttempt }
 		return try pathID.unwrap().pointee
 	}
 
-	func rgbaValues(fromParameter parameter: ParameterID, at time: CMTime) throws -> RawRGBAColor {
+	public func rgbaValues(fromParameter parameter: ParameterID, at time: CMTime) throws -> RawRGBAColor {
 		var (r, g, b, a) = (0.0, 0.0, 0.0, 0.0)
 		let success = api.getRedValue(
 			&r,
@@ -113,7 +113,7 @@ struct ParameterRetrievalApi<ParameterID: UInt32Raw> {
 		return RawRGBAColor(red: r, green: g, blue: b, alpha: a)
 	}
 
-	func rgbValues(fromParameter parameter: ParameterID, at time: CMTime) throws -> RawRGBColor {
+	public func rgbValues(fromParameter parameter: ParameterID, at time: CMTime) throws -> RawRGBColor {
 		var (r, g, b) = (0.0, 0.0, 0.0)
 		let success = api.getRedValue(
 			&r,
@@ -125,29 +125,28 @@ struct ParameterRetrievalApi<ParameterID: UInt32Raw> {
 		return RawRGBColor(red: r, green: g, blue: b)
 	}
 
-	func stringValue(fromParameter parameter: ParameterID) throws -> String {
+	public func stringValue(fromParameter parameter: ParameterID) throws -> String {
 		var value: NSString = ""
 		let success = api.getStringParameterValue(&value, fromParameter: parameter.rawValue)
 		guard success else { throw ParameterRetrievalError.unsuccessfulRetrievalAttempt }
 		return value as String
 	}
 
-	func location(fromParameter parameter: ParameterID, at time: CMTime) throws -> CGPoint {
+	public func location(fromParameter parameter: ParameterID, at time: CMTime) throws -> CGPoint {
 		var (x, y) = (0.0, 0.0)
 		let success = api.getXValue(&x, yValue: &y, fromParameter: parameter.rawValue, at: time)
 		guard success else { throw ParameterRetrievalError.unsuccessfulRetrievalAttempt }
 		return CGPoint(x: x, y: y)
 	}
 
-	func imageSize(fromParameter parameter: ParameterID, at time: CMTime) throws -> CGSize {
+	public func imageSize(fromParameter parameter: ParameterID, at time: CMTime) throws -> CGSize {
 		var size = CGSize(width: -1, height: -1)
 		try api.imageSize(&size, fromParameter: parameter.rawValue, at: time)
 		guard size != CGSize(width: -1, height: -1) else { throw ParameterRetrievalError.unsuccessfulRetrievalAttempt }
 		return size
 	}
 
-
-	enum ParameterRetrievalError: Error {
+	public enum ParameterRetrievalError: Error {
 		case unsuccessfulRetrievalAttempt
 	}
 }

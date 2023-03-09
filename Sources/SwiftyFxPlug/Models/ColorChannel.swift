@@ -1,6 +1,6 @@
 import Foundation
 
-enum ColorChannel: UInt {
+public enum ColorChannel: UInt {
 	case rgb = 0
 	case red = 1
 	case green = 2

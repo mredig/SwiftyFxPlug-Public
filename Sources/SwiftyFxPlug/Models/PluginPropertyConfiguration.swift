@@ -64,4 +64,34 @@ public struct PluginPropertyConfiguration {
 	var nsDictionary: NSDictionary {
 		NSDictionary(dictionary: swiftDictionary)
 	}
+
+	public init(
+		variesWhenParamsAreStatic: Bool? = nil,
+		preservesAlpha: Bool? = nil,
+		pixelIndependent: Bool? = nil,
+		isThreadSafe: Bool? = nil,
+		mayRemapTime: Bool? = nil,
+		usesLumaChroma: Bool? = nil,
+		needsFullBuffer: Bool? = nil,
+		usesRationalTime: Bool? = nil,
+		changesOutputSize: Bool? = nil,
+		drawsInScreenSpace: Bool? = nil,
+		desiredProcessingColorInfo: ImageColorInfo? = nil,
+		usesNonmatchingTextureLayout: Bool? = nil,
+		userDefined: [String : NSNumber] = [:]) {
+			self.variesWhenParamsAreStatic = variesWhenParamsAreStatic
+			self.preservesAlpha = preservesAlpha
+			self.pixelIndependent = pixelIndependent
+			self.isThreadSafe = isThreadSafe
+			self.mayRemapTime = mayRemapTime
+			self.usesLumaChroma = usesLumaChroma
+			self.needsFullBuffer = needsFullBuffer
+			self.usesRationalTime = usesRationalTime
+			self.changesOutputSize = changesOutputSize
+			self.drawsInScreenSpace = drawsInScreenSpace
+			self.desiredProcessingColorInfo = desiredProcessingColorInfo
+			self.usesNonmatchingTextureLayout = usesNonmatchingTextureLayout
+			self.userDefined = userDefined
+		}
+
 }

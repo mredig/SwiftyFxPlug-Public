@@ -1,13 +1,13 @@
 import FxPlug
 
-struct ParameterCreationApi<ParameterID: UInt32Raw> {
+public struct ParameterCreationApi<ParameterID: UInt32Raw> {
 	private let api: FxParameterCreationAPI_v5
 
-	init(api: FxParameterCreationAPI_v5) {
+	public init(api: FxParameterCreationAPI_v5) {
 		self.api = api
 	}
 
-	func addAngleSlider(
+	public func addAngleSlider(
 		withName name: String,
 		parameterID: ParameterID,
 		defaultValue: Angle,
@@ -25,7 +25,7 @@ struct ParameterCreationApi<ParameterID: UInt32Raw> {
 			guard success else { throw ParameterCreationError.unsuccessfulCreationAttempt }
 		}
 
-	func addRGBColorParameter(
+	public func addRGBColorParameter(
 		withName name: String,
 		parameterID: ParameterID,
 		defaultColor: RawRGBColor,
@@ -40,7 +40,7 @@ struct ParameterCreationApi<ParameterID: UInt32Raw> {
 			guard success else { throw ParameterCreationError.unsuccessfulCreationAttempt }
 		}
 
-	func addRGBAColorParameter(
+	public func addRGBAColorParameter(
 		withName name: String,
 		parameterID: ParameterID,
 		defaultColor: RawRGBAColor,
@@ -56,7 +56,7 @@ struct ParameterCreationApi<ParameterID: UInt32Raw> {
 			guard success else { throw ParameterCreationError.unsuccessfulCreationAttempt }
 		}
 
-	func addCustomParameter<T: NSCopying & NSSecureCoding & NSObjectProtocol>(
+	public func addCustomParameter<T: NSCopying & NSSecureCoding & NSObjectProtocol>(
 		withName name: String,
 		parameterID: ParameterID,
 		defaultValue: T,
@@ -69,7 +69,7 @@ struct ParameterCreationApi<ParameterID: UInt32Raw> {
 			guard success else { throw ParameterCreationError.unsuccessfulCreationAttempt }
 		}
 
-	func addFloatSlider(
+	public func addFloatSlider(
 		withName name: String,
 		parameterID: ParameterID,
 		defaultValue: Double,
@@ -90,7 +90,7 @@ struct ParameterCreationApi<ParameterID: UInt32Raw> {
 			guard success else { throw ParameterCreationError.unsuccessfulCreationAttempt }
 		}
 
-	func addFontMenu(
+	public func addFontMenu(
 		withName name: String,
 		parameterID: ParameterID,
 		fontName: String,
@@ -103,7 +103,7 @@ struct ParameterCreationApi<ParameterID: UInt32Raw> {
 			guard success else { throw ParameterCreationError.unsuccessfulCreationAttempt }
 		}
 
-	func addGradient(
+	public func addGradient(
 		withName name: String,
 		parameterID: ParameterID,
 		parameterFlags: ParameterFlag) throws {
@@ -114,7 +114,7 @@ struct ParameterCreationApi<ParameterID: UInt32Raw> {
 			guard success else { throw ParameterCreationError.unsuccessfulCreationAttempt }
 		}
 
-	func addHelpButton(
+	public func addHelpButton(
 		withName name: String,
 		parameterID: ParameterID,
 		selector: Selector,
@@ -127,7 +127,7 @@ struct ParameterCreationApi<ParameterID: UInt32Raw> {
 			guard success else { throw ParameterCreationError.unsuccessfulCreationAttempt }
 		}
 
-	func addHistogram(
+	public func addHistogram(
 		withName name: String,
 		parameterID: ParameterID,
 		parameterFlags: ParameterFlag) throws {
@@ -138,7 +138,7 @@ struct ParameterCreationApi<ParameterID: UInt32Raw> {
 			guard success else { throw ParameterCreationError.unsuccessfulCreationAttempt }
 		}
 
-	func addImageReference(
+	public func addImageReference(
 		withName name: String,
 		parameterID: ParameterID,
 		parameterFlags: ParameterFlag) throws {
@@ -149,7 +149,7 @@ struct ParameterCreationApi<ParameterID: UInt32Raw> {
 			guard success else { throw ParameterCreationError.unsuccessfulCreationAttempt }
 		}
 
-	func addIntSlider(
+	public func addIntSlider(
 		withName name: String,
 		parameterID: ParameterID,
 		defaultValue: Int32,
@@ -170,7 +170,7 @@ struct ParameterCreationApi<ParameterID: UInt32Raw> {
 			guard success else { throw ParameterCreationError.unsuccessfulCreationAttempt }
 		}
 
-	func addPathPicker(
+	public func addPathPicker(
 		withName name: String,
 		parameterID: ParameterID,
 		parameterFlags: ParameterFlag) throws {
@@ -181,7 +181,7 @@ struct ParameterCreationApi<ParameterID: UInt32Raw> {
 			guard success else { throw ParameterCreationError.unsuccessfulCreationAttempt }
 		}
 
-	func addPercentSlider(
+	public func addPercentSlider(
 		withName name: String,
 		parameterID: ParameterID,
 		defaultValue: Double,
@@ -202,7 +202,7 @@ struct ParameterCreationApi<ParameterID: UInt32Raw> {
 			guard success else { throw ParameterCreationError.unsuccessfulCreationAttempt }
 		}
 
-	func addPointParameter(
+	public func addPointParameter(
 		withName name: String,
 		parameterID: ParameterID,
 		defaultPoint: CGPoint,
@@ -216,28 +216,28 @@ struct ParameterCreationApi<ParameterID: UInt32Raw> {
 			guard success else { throw ParameterCreationError.unsuccessfulCreationAttempt }
 		}
 
-	struct PopupOptions {
-		struct Option: Hashable, ExpressibleByStringLiteral, ExpressibleByStringInterpolation {
-			var isSelected: Bool
-			var value: String
+	public struct PopupOptions {
+		public struct Option: Hashable, ExpressibleByStringLiteral, ExpressibleByStringInterpolation {
+			public var isSelected: Bool
+			public var value: String
 
-			init(isSelected: Bool, value: String) {
+			public init(isSelected: Bool, value: String) {
 				self.isSelected = isSelected
 				self.value = value
 			}
 
-			init(stringLiteral value: StringLiteralType) {
+			public init(stringLiteral value: StringLiteralType) {
 				self.init(isSelected: false, value: value)
 			}
 		}
 
 		private(set) var options: [Option] = []
-		var selectedIndex: UInt32 {
+		public var selectedIndex: UInt32 {
 			let index = options.firstIndex(where: { $0.isSelected })
 			return index.flatMap(UInt32.init) ?? 0
 		}
 
-		mutating func addOption(_ option: Option) {
+		mutating public func addOption(_ option: Option) {
 			var option = option
 			if options.isEmpty {
 				option.isSelected = true
@@ -252,7 +252,7 @@ struct ParameterCreationApi<ParameterID: UInt32Raw> {
 			options.append(option)
 		}
 
-		mutating func addOptions(_ options: [Option]) {
+		mutating public func addOptions(_ options: [Option]) {
 			self.options.append(contentsOf: options)
 
 			var selectedIndicies: [Int] = []
@@ -276,7 +276,7 @@ struct ParameterCreationApi<ParameterID: UInt32Raw> {
 		}
 	}
 
-	func addPopupMenu(
+	public func addPopupMenu(
 		withName name: String,
 		parameterID: ParameterID,
 		options: PopupOptions,
@@ -290,7 +290,7 @@ struct ParameterCreationApi<ParameterID: UInt32Raw> {
 			guard success else { throw ParameterCreationError.unsuccessfulCreationAttempt }
 		}
 
-	func addPushButton(
+	public func addPushButton(
 		withName name: String,
 		parameterID: ParameterID,
 		selector: Selector,
@@ -303,7 +303,7 @@ struct ParameterCreationApi<ParameterID: UInt32Raw> {
 			guard success else { throw ParameterCreationError.unsuccessfulCreationAttempt }
 		}
 
-	func addStringParameter(
+	public func addStringParameter(
 		withName name: String,
 		parameterID: ParameterID,
 		defaultValue: String,
@@ -316,7 +316,7 @@ struct ParameterCreationApi<ParameterID: UInt32Raw> {
 			guard success else { throw ParameterCreationError.unsuccessfulCreationAttempt }
 		}
 
-	func addToggleButton(
+	public func addToggleButton(
 		withName name: String,
 		parameterID: ParameterID,
 		defaultValue: Bool,
@@ -329,7 +329,7 @@ struct ParameterCreationApi<ParameterID: UInt32Raw> {
 			guard success else { throw ParameterCreationError.unsuccessfulCreationAttempt }
 		}
 
-	func addParameterSubgroup(
+	public func addParameterSubgroup(
 		withName name: String,
 		withContents contents: () -> Void,
 		parameterID: ParameterID,

@@ -1,6 +1,6 @@
 import FxPlug
 
-extension PROAPIAccessing {
+public extension PROAPIAccessing {
 	func settingApi<ParameterID: UInt32Raw>(idType: ParameterID.Type) throws -> ParameterSettingApi<ParameterID> {
 		guard
 			let paramAPI = api(for: FxParameterSettingAPI_v6.self) as? FxParameterSettingAPI_v6
@@ -23,6 +23,6 @@ extension PROAPIAccessing {
 	}
 }
 
-enum PROAPIAccessingError: Error {
+public enum PROAPIAccessingError: Error {
 	case requestedApiNotAvailable
 }

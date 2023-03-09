@@ -1,9 +1,9 @@
 import Foundation
 
-typealias RawRGBColor = SIMD3<Double>
-typealias RawRGBAColor = SIMD4<Double>
+public typealias RawRGBColor = SIMD3<Double>
+public typealias RawRGBAColor = SIMD4<Double>
 
-extension RawRGBColor {
+public extension RawRGBColor {
 	var red: Double { x }
 	var green: Double { y }
 	var blue: Double { z }
@@ -13,7 +13,7 @@ extension RawRGBColor {
 	}
 }
 
-extension RawRGBAColor {
+public extension RawRGBAColor {
 	var red: Double { x }
 	var green: Double { y }
 	var blue: Double { z }

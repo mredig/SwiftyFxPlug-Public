@@ -1,11 +1,11 @@
 import FxPlug
 
-protocol UInt32Raw: RawRepresentable where RawValue == UInt32 {}
+public protocol UInt32Raw: RawRepresentable where RawValue == UInt32 {}
 
 /**
 Conform your plugin class to this protocol to create your plugin. This is the central point of Swifty FxPlug library.
  */
-protocol SwiftyFxTileableEffectProtocol {
+public protocol SwiftyFxTileableEffectProtocol {
 	static func registerWithFactory()
 
 	associatedtype PluginStateCodableData: Codable
@@ -32,7 +32,7 @@ protocol SwiftyFxTileableEffectProtocol {
 
 fileprivate let pluginStateEncoder = JSONEncoder()
 fileprivate let pluginStateDecoder = JSONDecoder()
-extension SwiftyFxTileableEffectProtocol {
+public extension SwiftyFxTileableEffectProtocol {
 
 	static func registerWithFactory() {
 		EffectFactory.createPluginInstanceBlock = Self.init

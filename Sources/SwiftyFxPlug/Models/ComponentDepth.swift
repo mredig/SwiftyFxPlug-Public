@@ -1,11 +1,11 @@
 import FxPlug
 
-enum ComponentDepth {
+public enum ComponentDepth {
 	case uint8
 	case float16
 	case float32
 
-	var rawValue: FxDepth {
+	public var rawValue: FxDepth {
 		switch self {
 		case .uint8:
 			return UInt(kFxDepth_UINT8)
@@ -16,7 +16,7 @@ enum ComponentDepth {
 		}
 	}
 
-	init?(rawValue: FxDepth) {
+	public init?(rawValue: FxDepth) {
 		switch rawValue {
 		case UInt(kFxDepth_UINT8):
 			self = .uint8

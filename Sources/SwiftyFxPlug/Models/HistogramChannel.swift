@@ -1,13 +1,13 @@
 import FxPlug
 
-enum HistogramChannel {
+public enum HistogramChannel {
 	case rgb
 	case red
 	case green
 	case blue
 	case alpha
 
-	var rawValue: FxHistogramChannel {
+	public var rawValue: FxHistogramChannel {
 		switch self {
 		case .rgb:
 			return UInt(kFxHistogramChannel_RGB)

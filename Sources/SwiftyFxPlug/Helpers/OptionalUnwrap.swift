@@ -1,6 +1,6 @@
 import Foundation
 
-extension Optional {
+public extension Optional {
 	func unwrap() throws -> Wrapped {
 		switch self {
 		case .none:

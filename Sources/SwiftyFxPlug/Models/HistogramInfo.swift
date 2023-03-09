@@ -1,9 +1,9 @@
 import Foundation
 
-struct HistorgramInfo: Hashable {
-	let blackIn: Double
-	let blackOut: Double
-	let whiteIn: Double
-	let whiteOut: Double
-	let gamma: Double
+public struct HistorgramInfo: Hashable {
+	public let blackIn: Double
+	public let blackOut: Double
+	public let whiteIn: Double
+	public let whiteOut: Double
+	public let gamma: Double
 }
