@@ -4,14 +4,14 @@
 import PackageDescription
 
 let package = Package(
-    name: "FxPlugSPM",
+    name: "SwiftyFxPlug",
 	platforms: [
 		.macOS(.v12),
 	],
 	products: [
 //		.library(name: "FxPlug", targets: ["FxPlug"]),
 //		.library(name: "PluginManager", targets: ["PluginManager"]),
-		.library(name: "Test", targets: ["Test"]),
+		.library(name: "SwiftyFxPlug", targets: ["SwiftyFxPlug"]),
 	],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -23,7 +23,7 @@ let package = Package(
 		.binaryTarget(name: "FxPlug", path: "xcframeworks/FxPlug.xcframework"),
 		.binaryTarget(name: "PluginManager", path: "xcframeworks/PluginManager.xcframework"),
 		.target(
-			name: "Test",
+			name: "SwiftyFxPlug",
 			dependencies: [
 				"PluginManager",
 				"FxPlug",
