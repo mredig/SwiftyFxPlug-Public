@@ -6,7 +6,7 @@ import PackageDescription
 let package = Package(
     name: "FxPlugSPM",
 	products: [
-		.library(name: "FxPlug", targets: ["FxPlug"]),
+//		.library(name: "FxPlug", targets: ["FxPlug"]),
 //		.library(name: "PluginManager", targets: ["PluginManager"]),
 		.library(name: "Test", targets: ["Test"]),
 	],
@@ -16,13 +16,13 @@ let package = Package(
     ],
 	targets: [
 //		.systemLibrary(name: "PluginManager", path: nil, pkgConfig: nil, providers: nil),
-		.systemLibrary(name: "FxPlug", path: nil, pkgConfig: nil, providers: nil),
-//		.binaryTarget(name: "FxPlug", path: "xcframeworks/FxPlug.xcframework"),
-//		.binaryTarget(name: "PluginManager", path: "xcframeworks/PluginManager.xcframework"),
+//		.systemLibrary(name: "FxPlug", path: nil, pkgConfig: nil, providers: nil),
+		.binaryTarget(name: "FxPlug", path: "xcframeworks/FxPlug.xcframework"),
+		.binaryTarget(name: "PluginManager", path: "xcframeworks/PluginManager.xcframework"),
 		.target(
 			name: "Test",
 			dependencies: [
-//				"PluginManager",
+				"PluginManager",
 				"FxPlug",
 			]) 
 	]

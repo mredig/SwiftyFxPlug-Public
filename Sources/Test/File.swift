@@ -8,7 +8,7 @@
 import Foundation
 //import FxPlug
 import PluginManager
-//import FxPlug
+import FxPlug
 
 struct Example {
 	let test: PROAPIAccessing
