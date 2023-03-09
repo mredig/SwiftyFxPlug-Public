@@ -9,8 +9,6 @@ let package = Package(
 		.macOS(.v12),
 	],
 	products: [
-//		.library(name: "FxPlug", targets: ["FxPlug"]),
-//		.library(name: "PluginManager", targets: ["PluginManager"]),
 		.library(name: "SwiftyFxPlug", targets: ["SwiftyFxPlug"]),
 	],
     dependencies: [
@@ -18,8 +16,6 @@ let package = Package(
         // .package(url: /* package url */, from: "1.0.0"),
     ],
 	targets: [
-//		.systemLibrary(name: "PluginManager", path: nil, pkgConfig: nil, providers: nil),
-//		.systemLibrary(name: "FxPlug", path: nil, pkgConfig: nil, providers: nil),
 		.binaryTarget(name: "FxPlug", path: "xcframeworks/FxPlug.xcframework"),
 		.binaryTarget(name: "PluginManager", path: "xcframeworks/PluginManager.xcframework"),
 		.target(
