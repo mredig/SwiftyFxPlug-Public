@@ -10,6 +10,7 @@ let package = Package(
 	],
 	products: [
 		.library(name: "SwiftyFxPlug", targets: ["SwiftyFxPlug"]),
+		.plugin(name: "SetupXCFrameworks", targets: ["SetupXCFrameworks"]),
 	],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -25,7 +26,14 @@ let package = Package(
 				"PluginManager",
 				"FxPlug",
 				"Float16",
-			]) 
+			]) ,
+		.plugin(
+			name: "SetupXCFrameworks",
+			capability: .command(
+				intent: .custom(
+					verb: "xcframeworkInstall",
+					description: "Pull the FxPlug and PluginManager frameworks installed from Apple's website into the `xcframeworks` directory, while configuring headers and modulemap files.."),
+				permissions: [.writeToPackageDirectory(reason: "That's how it works.")]))
 	]
 )
 
