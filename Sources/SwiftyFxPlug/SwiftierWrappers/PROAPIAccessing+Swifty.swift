@@ -28,6 +28,13 @@ public extension PROAPIAccessing {
 		else { throw PROAPIAccessingError.requestedApiNotAvailable }
 		return CustomAPI(api: customApi, apiAccessor: self)
 	}
+
+	func remoteWindowApi<ParameterID: UInt32Raw>(idType: ParameterID.Type) throws -> RemoteWindowApi<ParameterID> {
+		guard
+			let remoteWindowApi = api(for: FxRemoteWindowAPI_v2.self) as? FxRemoteWindowAPI_v2
+		else { throw PROAPIAccessingError.requestedApiNotAvailable }
+		return RemoteWindowApi(api: remoteWindowApi)
+	}
 }
 
 public enum PROAPIAccessingError: Error {
