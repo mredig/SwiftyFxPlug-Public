@@ -237,6 +237,10 @@ public struct ParameterCreationApi<ParameterID: UInt32Raw> {
 			return index.flatMap(UInt32.init) ?? 0
 		}
 
+		public init(options: [ParameterCreationApi<ParameterID>.PopupOptions.Option] = []) {
+			self.options = options
+		}
+
 		mutating public func addOption(_ option: Option) {
 			var option = option
 			if options.isEmpty {
@@ -331,7 +335,7 @@ public struct ParameterCreationApi<ParameterID: UInt32Raw> {
 
 	public func addParameterSubgroup(
 		withName name: String,
-		withContents contents: () -> Void,
+		withContents contents: () throws -> Void,
 		parameterID: ParameterID,
 		parameterFlags: ParameterFlag) throws {
 			var success = api.startParameterSubGroup(
@@ -340,7 +344,7 @@ public struct ParameterCreationApi<ParameterID: UInt32Raw> {
 				parameterFlags: parameterFlags.rawValue)
 			guard success else { throw ParameterCreationError.unsuccessfulCreationAttempt }
 
-			contents()
+			try contents()
 
 			success = api.endParameterSubGroup()
 			guard success else { throw ParameterCreationError.unsuccessfulCreationAttempt }
