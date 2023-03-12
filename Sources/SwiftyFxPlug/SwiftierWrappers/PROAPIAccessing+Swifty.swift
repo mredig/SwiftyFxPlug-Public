@@ -21,6 +21,13 @@ public extension PROAPIAccessing {
 		else { throw PROAPIAccessingError.requestedApiNotAvailable }
 		return ParameterRetrievalApi(api: paramAPI)
 	}
+
+	func customApi<ParameterID: UInt32Raw>(idType: ParameterID.Type) throws -> CustomAPI<ParameterID> {
+		guard
+			let customApi = api(for: FxCustomParameterActionAPI_v4.self) as? FxCustomParameterActionAPI_v4
+		else { throw PROAPIAccessingError.requestedApiNotAvailable }
+		return CustomAPI(api: customApi, apiAccessor: self)
+	}
 }
 
 public enum PROAPIAccessingError: Error {
