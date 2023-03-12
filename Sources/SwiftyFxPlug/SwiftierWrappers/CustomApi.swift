@@ -24,4 +24,8 @@ public struct CustomAPI {
 		api.endAction(sender)
 		return result
 	}
+
+	public func currentTime() -> CMTime {
+		api.currentTime()
+	}
 }
