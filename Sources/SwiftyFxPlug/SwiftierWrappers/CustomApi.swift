@@ -1,6 +1,6 @@
 import FxPlug
 
-public struct CustomAPI<ParameterID: UInt32Raw> {
+public struct CustomAPI {
 	private let api: FxCustomParameterActionAPI_v4
 	private weak var apiAccessor: PROAPIAccessing?
 

@@ -1,6 +1,6 @@
 import FxPlug
 
-public struct RemoteWindowApi<ParameterID: UInt32Raw> {
+public struct RemoteWindowApi {
 	private let api: FxRemoteWindowAPI_v2
 	private weak var apiAccessor: PROAPIAccessing?
 

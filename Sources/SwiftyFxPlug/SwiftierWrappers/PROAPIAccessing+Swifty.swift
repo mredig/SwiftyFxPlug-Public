@@ -22,14 +22,14 @@ public extension PROAPIAccessing {
 		return ParameterRetrievalApi(api: paramAPI)
 	}
 
-	func customApi<ParameterID: UInt32Raw>(idType: ParameterID.Type) throws -> CustomAPI<ParameterID> {
+	func customApi() throws -> CustomAPI {
 		guard
 			let customApi = api(for: FxCustomParameterActionAPI_v4.self) as? FxCustomParameterActionAPI_v4
 		else { throw PROAPIAccessingError.requestedApiNotAvailable }
 		return CustomAPI(api: customApi, apiAccessor: self)
 	}
 
-	func remoteWindowApi<ParameterID: UInt32Raw>(idType: ParameterID.Type) throws -> RemoteWindowApi<ParameterID> {
+	func remoteWindowApi() throws -> RemoteWindowApi {
 		guard
 			let remoteWindowApi = api(for: FxRemoteWindowAPI_v2.self) as? FxRemoteWindowAPI_v2
 		else { throw PROAPIAccessingError.requestedApiNotAvailable }
