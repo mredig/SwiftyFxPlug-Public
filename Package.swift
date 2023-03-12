@@ -6,7 +6,7 @@ import PackageDescription
 let package = Package(
     name: "SwiftyFxPlug",
 	platforms: [
-		.macOS(.v12),
+		.macOS("11.5.1"),
 	],
 	products: [
 		.library(name: "SwiftyFxPlug", targets: ["SwiftyFxPlug"]),
