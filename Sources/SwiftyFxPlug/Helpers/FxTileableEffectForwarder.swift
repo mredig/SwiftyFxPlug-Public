@@ -12,6 +12,14 @@ This class is the objective c exposed variant of an FxTileableEffect. It is stil
 		self.swiftyFxTileableEffect = EffectFactory.createPluginInstance(apiManager)
     }
 
+	func finishInitialSetup() throws {
+		try swiftyFxTileableEffect.finishInitialSetup()
+	}
+
+	func pluginInstanceAddedToDocument() {
+		swiftyFxTileableEffect.pluginInstanceAddedToDocument()
+	}
+
 	func properties(_ properties: AutoreleasingUnsafeMutablePointer<NSDictionary>?) throws {
 		properties?.pointee = try swiftyFxTileableEffect.pluginProperties().nsDictionary
 	}

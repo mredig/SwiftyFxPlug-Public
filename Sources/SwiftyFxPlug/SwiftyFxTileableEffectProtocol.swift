@@ -13,6 +13,10 @@ public protocol SwiftyFxTileableEffectProtocol {
 
 	init(_ api: PROAPIAccessing)
 
+	func finishInitialSetup() throws
+
+	func pluginInstanceAddedToDocument()
+
 	func pluginProperties() throws -> PluginPropertyConfiguration
 
 	func addParameters() throws
@@ -87,4 +91,11 @@ public extension SwiftyFxTileableEffectProtocol {
 
 		try renderDestinationImage(destinationImage, sourceImages: sourceImages, pluginState: decodedObject, at: renderTime)
 	}
+
+	// optional stuff
+	func finishInitialSetup() throws {}
+
+	func pluginInstanceAddedToDocument() {}
+
+	func createView(for parameter: ParameterID) -> NSView? { nil }
 }
