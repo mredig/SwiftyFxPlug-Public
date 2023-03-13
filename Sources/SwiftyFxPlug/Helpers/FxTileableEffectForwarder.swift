@@ -51,4 +51,17 @@ This class is the objective c exposed variant of an FxTileableEffect. It is stil
 	func createView(forParameterID parameterID: UInt32) -> NSView! {
 		swiftyFxTileableEffect.createViewRaw(for: parameterID)
 	}
+
+	override func responds(to aSelector: Selector!) -> Bool {
+		guard super.responds(to: aSelector) == false else {
+			return true
+		}
+
+		let responds = (swiftyFxTileableEffect as? NSObjectProtocol)?.responds(to: aSelector) ?? false
+		return responds
+	}
+
+	override func forwardingTarget(for aSelector: Selector!) -> Any? {
+		swiftyFxTileableEffect
+	}
 }
