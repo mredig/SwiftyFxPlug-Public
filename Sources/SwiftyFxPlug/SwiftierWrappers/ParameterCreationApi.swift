@@ -225,7 +225,7 @@ public struct ParameterCreationApi<ParameterID: UInt32Raw> {
 				withName: name,
 				parameterID: parameterID.rawValue,
 				defaultValue: UInt32(options.selectedIndex),
-				menuEntries: options.options.map(\.localizedStringKey),
+				menuEntries: options.options.map(\.localizedStringValue),
 				parameterFlags: parameterFlags.rawValue)
 			guard success else { throw ParameterCreationError.unsuccessfulCreationAttempt }
 		}
