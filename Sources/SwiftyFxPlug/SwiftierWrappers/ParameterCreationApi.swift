@@ -216,80 +216,16 @@ public struct ParameterCreationApi<ParameterID: UInt32Raw> {
 			guard success else { throw ParameterCreationError.unsuccessfulCreationAttempt }
 		}
 
-	public struct PopupOptions {
-		public struct Option: Hashable, ExpressibleByStringLiteral, ExpressibleByStringInterpolation {
-			public var isSelected: Bool
-			public var value: String
-
-			public init(isSelected: Bool, value: String) {
-				self.isSelected = isSelected
-				self.value = value
-			}
-
-			public init(stringLiteral value: StringLiteralType) {
-				self.init(isSelected: false, value: value)
-			}
-		}
-
-		private(set) var options: [Option] = []
-		public var selectedIndex: UInt32 {
-			let index = options.firstIndex(where: { $0.isSelected })
-			return index.flatMap(UInt32.init) ?? 0
-		}
-
-		public init(options: [ParameterCreationApi<ParameterID>.PopupOptions.Option] = []) {
-			self.options = options
-		}
-
-		mutating public func addOption(_ option: Option) {
-			var option = option
-			if options.isEmpty {
-				option.isSelected = true
-			}
-			if option.isSelected {
-				options = options.map {
-					var new = $0
-					new.isSelected = false
-					return new
-				}
-			}
-			options.append(option)
-		}
-
-		mutating public func addOptions(_ options: [Option]) {
-			self.options.append(contentsOf: options)
-
-			var selectedIndicies: [Int] = []
-			for (index, option) in self.options.enumerated() {
-				if option.isSelected {
-					selectedIndicies.append(index)
-				}
-			}
-			guard
-				selectedIndicies.count != 1
-			else { return }
-
-			if selectedIndicies.isEmpty {
-				self.options[0].isSelected = true
-			} else {
-				selectedIndicies.removeLast()
-				for selectedIndex in selectedIndicies {
-					self.options[selectedIndex].isSelected = false
-				}
-			}
-		}
-	}
-
-	public func addPopupMenu(
+	public func addPopupMenu<Option>(
 		withName name: String,
 		parameterID: ParameterID,
-		options: PopupOptions,
+		options: PopupOptions<Option>,
 		parameterFlags: ParameterFlag) throws {
 			let success = api.addPopupMenu(
 				withName: name,
 				parameterID: parameterID.rawValue,
-				defaultValue: options.selectedIndex,
-				menuEntries: options.options.map(\.value),
+				defaultValue: UInt32(options.selectedIndex),
+				menuEntries: options.options.map(\.localizedStringKey),
 				parameterFlags: parameterFlags.rawValue)
 			guard success else { throw ParameterCreationError.unsuccessfulCreationAttempt }
 		}
