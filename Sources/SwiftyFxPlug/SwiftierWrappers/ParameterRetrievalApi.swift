@@ -95,6 +95,7 @@ public struct ParameterRetrievalApi<ParameterID: UInt32Raw> {
 
 	public func pathID(fromParameter parameter: ParameterID, at time: CMTime) throws -> FxPathID {
 		var pathID: UnsafeMutablePointer<FxPathID>?
+		pathID = nil // silence warning
 		let success = api.getPathID(pathID, fromParameter: parameter.rawValue, at: time)
 		guard success else { throw ParameterRetrievalError.unsuccessfulRetrievalAttempt }
 		return try pathID.unwrap().pointee
