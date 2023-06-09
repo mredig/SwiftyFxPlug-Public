@@ -26,7 +26,7 @@ let package = Package(
 				"PluginManager",
 				"FxPlug",
 				"Float16",
-			]) ,
+			]),
 		.plugin(
 			name: "SetupXCFrameworks",
 			capability: .command(
