@@ -58,7 +58,7 @@ public struct ParameterSettingApi<ParameterID: UInt32Raw> {
 	}
 
 	public func setColorValue(_ value: SIMD3<Double>, toParameter parameter: ParameterID, at time: CMTime) throws {
-		let success = api.setRedValue(value.x, greenValue: value.y, blueValue: value.z, toParameter: parameter.rawValue, at: time)
+		let success = api.setRedValue(value.red, greenValue: value.green, blueValue: value.blue, toParameter: parameter.rawValue, at: time)
 		guard success else { throw ParameterSettingError.unsuccessfulSettingAttempt }
 	}
 
